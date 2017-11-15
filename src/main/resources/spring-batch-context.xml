@@ -212,16 +212,7 @@
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
 	</bean>
-
-	<bean id="databaseItemReaderPasswordRecovery"
-		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
-		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${PasswordRecovery.selection}"/>
-		<property name="rowMapper">
-			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
-				  c:mappedClass="com.navercorp.mattermost.migration.domains.PasswordRecovery"/>
-		</property>
-	</bean>
+	
 	<bean id="databaseItemWriterPasswordRecovery" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
