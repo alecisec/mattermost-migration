@@ -15,9 +15,9 @@ This program migrates `Mattermost database` from postgresql to mysql, or vice ve
 * Using same version of Mattermost.
  
  ```
-ex) v3.1 Mattermost running on postgresql database
+ex) v4.3.2 Mattermost running on postgresql database
  
- to  v3.1 Mattermost running on mysql database
+ to  v4.3.2 Mattermost running on mysql database
  ```
  
   > You can upgrade your Mattermost version after migration.
