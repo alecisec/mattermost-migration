@@ -15,6 +15,8 @@
  */
 package com.navercorp.mattermost.migration.domains;
 
+import java.math.BigInteger;
+
 import lombok.Getter;
 import lombok.Setter;
 
