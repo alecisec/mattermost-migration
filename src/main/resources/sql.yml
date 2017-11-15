@@ -127,21 +127,57 @@ Emoji:
     SELECT * FROM Emoji
   insertion:
     INSERT INTO Emoji
-      (Manual,
-      ActiveChannel)
+      (Id,
+      CreateAt,
+      UpdateAt,
+      DeleteAt,
+      CreatorId,
+      Name)
     VALUES
-      (:Manual,
-      :ActiveChannel)
+      (:Id,
+      :CreateAt,
+      :UpdateAt,
+      :DeleteAt,
+      :CreatorId,
+      :Name)
 FileInfo:
   selection:
     SELECT * FROM FileInfo
   insertion:
     INSERT INTO FileInfo
-      (Manual,
-      ActiveChannel)
+      (Id,
+      CreatorId,
+      PostId,
+      CreateAt,
+      UpdateAt,
+      DeleteAt,
+      Path,
+      ThumbnailPath,
+      PreviewPath,
+      Name,
+      Extension,
+      Size,
+      Mimetype,
+      Width,
+      Height,
+      HasPreviewImage)
     VALUES
-      (:Manual,
-      :ActiveChannel)
+      (:Id,
+      :CreatorId,
+      :PostId,
+      :CreateAt,
+      :UpdateAt,
+      :DeleteAt,
+      :Path,
+      :ThumbnailPath,
+      :PreviewPath,
+      :Name,
+      :Extension,
+      :Size,
+      :Mimetype,
+      :Width,
+      :Height,
+      :HasPreviewImage)
 incomingWebhooks:
   selection:
     SELECT * FROM IncomingWebhooks
@@ -341,11 +377,15 @@ Status:
     SELECT * FROM Status
   insertion:
     INSERT INTO Status
-      (Manual,
-      x)
+      (UserId,
+      Status,
+      Manual,
+      LastActivityAt)
     VALUES
-      (:Manual,
-      :x)
+      (:UserId,
+      :Status,
+      :Manual,
+      :LastActivityAt)
 Systems:
   selection:
     SELECT * FROM Systems
@@ -407,11 +447,15 @@ UserAccessToken:
     SELECT * FROM UserAccessToken
   insertion:
     INSERT INTO UserAccessToken
-      (Name,
-      Value)
+      (Id,
+      Token,
+      UserId,
+      Description)
     VALUES
-      (:Name,
-      :Value)
+      (:Id,
+      :Token,
+      :UserId,
+      :Description)
 Users:
   selection:
     SELECT * FROM Users
