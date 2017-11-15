@@ -20,9 +20,9 @@ ex) v4.3.2 Mattermost running on postgresql database
  to  v4.3.2 Mattermost running on mysql database
  ```
  
-  > You can upgrade your Mattermost version after migration.
+Recommend updating both source mattermost install and the destination/trunkated DB to 4.3.2
+This may work on later versions however please observe any changes to schema (paste 4.3.2) noted here https://docs.mattermost.com/administration/changelog.html
 
-* Sobriety :-)
 
 ## How-to-migrate
 
@@ -55,7 +55,7 @@ ex) v4.3.2 Mattermost running on postgresql database
 ```
  mvn compile exec:java -Dexec.mainClass="com.navercorp.mattermost.migration.Main"
 ```
-alternatively the included shell script
+alternatively use the included shell script
 
 ```
 sh run.sh
@@ -77,7 +77,7 @@ This program uses following libraries at it's build time.
 |Snakeyaml|1.17|
 
 
-## Limitation
+## Limitations
 
 This is **not official migration program**, it uses *not recommended way* to migration.
 
@@ -89,6 +89,6 @@ This program may make wrong result on target database, so you MUST check migrate
 
 Apache License 2.0
 
-## Author
+## Original Code by
 
 Sang Jun Lee \<sjun.lee@navercorp.com\>
