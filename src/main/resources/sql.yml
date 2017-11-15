@@ -329,9 +329,9 @@ Posts:
     SELECT * FROM Posts
   insertion:
     INSERT INTO Posts(id, createat, updateat, deleteat, userid, channelid, rootid, parentid, originalid,
-            message, type, props, hashtags, filenames, fileids, hasreactions, editat, ispinned)
+            message, type, props, hashtags, filenames, FileIds, hasreactions, editat, ispinned)
     VALUES(:id, :createat, :updateat, :deleteat, :userid, :channelid, :rootid, :parentid, :originalid,
-            :message, :type, :props, :hashtags, :filenames, :fileids, :hasreactions, :editat, :ispinned)
+            :message, :type, :props, :hashtags, :filenames, :FileIds, :hasreactions, :editat, :ispinned)
 Preferences:
   selection:
     SELECT * FROM Preferences
