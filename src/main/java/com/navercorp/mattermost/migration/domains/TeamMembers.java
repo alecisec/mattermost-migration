@@ -24,4 +24,5 @@ public class TeamMembers {
 	private String TeamId;
 	private String UserId;
 	private String Roles;
+	private BigInteger DeleteAt;
 }
