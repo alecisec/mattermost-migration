@@ -31,15 +31,15 @@ ex) v3.1 Mattermost running on postgresql database
 
 ### Initialize target database.
 
-* Setting `mattermost/config/config.json` to target database
+* Set `mattermost/config/config.json` to target database
 
-* Running `mattermost/bin/platform` to create initial Mattermost schema.
+* Run `mattermost/bin/platform` to create initial Mattermost schema.
 
 > Run mattermost (./bin/platform) and stop (Ctrl + C) when initialize complete.
 
 * Truncate all tables.
 
-> In fact, just truncate `Systems` table will be enough. (At first, other table is empty)
+>Normally truncating the `Systems` table will be enough. (At first, other table is empty)
 
 ### Rename `application.properties.default` to `application.properties`
 
@@ -50,10 +50,15 @@ ex) v3.1 Mattermost running on postgresql database
 * Make sure that database's driver, url, username, password are correct.
 
 
-### Run program using maven exec.
+### Run program using maven exec. 
 
 ```
  mvn compile exec:java -Dexec.mainClass="com.navercorp.mattermost.migration.Main"
+```
+alternatively the included shell script
+
+```
+sh run.sh
 ```
 
 This command will download libraries, compile classes, and run migration program.
