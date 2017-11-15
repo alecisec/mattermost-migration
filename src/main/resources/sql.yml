@@ -323,15 +323,49 @@ OutgoingWebhooks:
       :DisplayName,
       :Description,
       :ContentType,
-      :TriggerWhen)
+      :TriggerWhen)          
 Posts:
   selection:
-    SELECT * FROM Posts
+    SELECT * FROM Posts          
   insertion:
-    INSERT INTO Posts(id, createat, updateat, deleteat, userid, channelid, rootid, parentid, originalid,
-            message, type, props, hashtags, filenames, FileIds, hasreactions, editat, ispinned)
-    VALUES(:id, :createat, :updateat, :deleteat, :userid, :channelid, :rootid, :parentid, :originalid,
-            :message, :type, :props, :hashtags, :filenames, :FileIds, :hasreactions, :editat, :ispinned)
+    INSERT INTO OutgoingWebhooks
+      (Id,
+      createat,
+      updateat,
+      deleteat,
+      userid,
+      channelid,
+      rootid,
+      parentid,
+      originalid,
+      message,
+      type,
+      props,
+      hashtags,
+      filenames,
+      fileids,
+      hasreactions,
+      editat,
+      ispinned)
+    VALUES
+      (:Id,
+      :createat,
+      :updateat,
+      :deleteat,
+      :userid,
+      :channelid,
+      :rootid,
+      :parentid,
+      :originalid,
+      :message,
+      :type,
+      :props,
+      :hashtags,
+      :filenames,
+      :fileids,
+      :hasreactions,
+      :editat,
+      :ispinned)
 Preferences:
   selection:
     SELECT * FROM Preferences
