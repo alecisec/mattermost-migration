@@ -34,5 +34,6 @@ public class Teams {
 	private String CompanyName;
 	private String AllowedDomains;
 	private String InviteId;
+	private String Description;
 	private boolean AllowOpenInvite;
 }
