@@ -37,6 +37,7 @@ public class Users {
 	private String FirstName;
 	private String LastName;
 	private String Roles;
+	private String Position;
 	private BigInteger LastActivityAt;
 	private BigInteger LastPingAt;
 	private boolean AllowMarketing;
