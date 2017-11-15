@@ -122,6 +122,26 @@ compliances:
       :EndAt,
       :Keywords,
       :Emails)
+Emoji:
+  selection:
+    SELECT * FROM Emoji
+  insertion:
+    INSERT INTO Emoji
+      (Manual,
+      ActiveChannel)
+    VALUES
+      (:Manual,
+      :ActiveChannel)
+FileInfo:
+  selection:
+    SELECT * FROM FileInfo
+  insertion:
+    INSERT INTO FileInfo
+      (Manual,
+      ActiveChannel)
+    VALUES
+      (:Manual,
+      :ActiveChannel)
 incomingWebhooks:
   selection:
     SELECT * FROM IncomingWebhooks
@@ -146,6 +166,16 @@ incomingWebhooks:
       :TeamId,
       :DisplayName,
       :Description)
+Jobs:
+  selection:
+    SELECT * FROM UserAccessToken
+  insertion:
+    INSERT INTO UserAccessToken
+      (Name,
+      Value)
+    VALUES
+      (:Name,
+      :Value)
 licenses:
   selection:
     SELECT * FROM Licenses
@@ -163,15 +193,19 @@ OAuthAccessData:
     SELECT * FROM OAuthAccessData
   insertion:
     INSERT INTO OAuthAccessData
-      (AuthCode,
+      (ClientId,
       Token,
       RefreshToken,
-      RedirectUri)
+      RedirectUri,
+      Scope,
+      UserId)
     VALUES
-      (:AuthCode,
+      (:ClientId,
       :Token,
       :RefreshToken,
-      :RedirectUri)
+      :RedirectUri,
+      :Scope,
+      :UserId)
 OAuthApps:
   selection:
     SELECT * FROM OAuthApps
@@ -182,6 +216,7 @@ OAuthApps:
       CreateAt,
       UpdateAt,
       ClientSecret,
+      IconURL,
       Name,
       Description,
       CallbackUrls,
@@ -192,6 +227,7 @@ OAuthApps:
       :CreateAt,
       :UpdateAt,
       :ClientSecret,
+      :IconURL,
       :Name,
       :Description,
       :CallbackUrls,
@@ -235,7 +271,8 @@ OutgoingWebhooks:
       CallbackURLs,
       DisplayName,
       Description,
-      ContentType)
+      ContentType,
+      TriggerWhen)
     VALUES
       (:Id,
       :Token,
@@ -249,27 +286,16 @@ OutgoingWebhooks:
       :CallbackURLs,
       :DisplayName,
       :Description,
-      :ContentType)
-PasswordRecovery:
-  selection:
-    SELECT * FROM PasswordRecovery
-  insertion:
-    INSERT INTO PasswordRecovery
-      (UserId,
-      Code,
-      CreateAt)
-    VALUES
-      (:UserId,
-      :Code,
-      :CreateAt)
+      :ContentType,
+      :TriggerWhen)
 Posts:
   selection:
     SELECT * FROM Posts
   insertion:
     INSERT INTO Posts(id, createat, updateat, deleteat, userid, channelid, rootid, parentid, originalid,
-            message, type, props, hashtags, filenames)
+            message, type, props, hashtags, filenames, fileids, hasreactions, editat, ispinned)
     VALUES(:id, :createat, :updateat, :deleteat, :userid, :channelid, :rootid, :parentid, :originalid,
-            :message, :type, :props, :hashtags, :filenames)
+            :message, :type, :props, :hashtags, :filenames, :fileids, :hasreactions, :editat, :ispinned)
 Preferences:
   selection:
     SELECT * FROM Preferences
@@ -310,6 +336,16 @@ Sessions:
       :Roles,
       :IsOAuth,
       :Props)
+Status:
+  selection:
+    SELECT * FROM Status
+  insertion:
+    INSERT INTO Status
+      (Manual,
+      x)
+    VALUES
+      (:Manual,
+      :x)
 Systems:
   selection:
     SELECT * FROM Systems
@@ -326,10 +362,12 @@ TeamMembers:
   insertion:
     INSERT INTO TeamMembers
       (TeamId,
+      DeleteAt,
       UserId,
       Roles)
     VALUES
       (:TeamId,
+      :DeleteAt,
       :UserId,
       :Roles)
 Teams:
@@ -342,6 +380,7 @@ Teams:
       UpdateAt,
       DeleteAt,
       DisplayName,
+      Description,
       Name,
       Email,
       Type,
@@ -355,6 +394,7 @@ Teams:
       :UpdateAt,
       :DeleteAt,
       :DisplayName,
+      :Description,
       :Name,
       :Email,
       :Type,
@@ -362,6 +402,16 @@ Teams:
       :AllowedDomains,
       :InviteId,
       :AllowOpenInvite)
+UserAccessToken:
+  selection:
+    SELECT * FROM UserAccessToken
+  insertion:
+    INSERT INTO UserAccessToken
+      (Name,
+      Value)
+    VALUES
+      (:Name,
+      :Value)
 Users:
   selection:
     SELECT * FROM Users
@@ -381,18 +431,16 @@ Users:
       FirstName,
       LastName,
       Roles,
-      LastActivityAt,
-      LastPingAt,
       AllowMarketing,
       Props,
       NotifyProps,
-      ThemeProps,
       LastPasswordUpdate,
       LastPictureUpdate,
       FailedAttempts,
       Locale,
       MfaActive,
-      MfaSecret)
+      MfaSecret,
+      Position)
     VALUES
       (:Id,
       :CreateAt,
@@ -408,15 +456,13 @@ Users:
       :FirstName,
       :LastName,
       :Roles,
-      :LastActivityAt,
-      :LastPingAt,
       :AllowMarketing,
       :Props,
       :NotifyProps,
-      :ThemeProps,
       :LastPasswordUpdate,
       :LastPictureUpdate,
       :FailedAttempts,
       :Locale,
       :MfaActive,
-      :MfaSecret)
+      :MfaSecret,
+      :Position)
