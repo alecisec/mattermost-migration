@@ -213,15 +213,6 @@
 		</property>
 	</bean>
 
-	<bean id="databaseItemWriterPasswordRecovery" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
-		  scope="step">
-		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${PasswordRecovery.insertion}"/>
-		<property name="itemSqlParameterSourceProvider">
-			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
-		</property>
-	</bean>
-
 	<bean id="databaseItemReaderPosts"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
@@ -427,18 +418,12 @@
 			</batch:tasklet>
 		</batch:step>
 
-		<batch:step id="migrateOutgoingWebhooks" next="migratePasswordRecovery">
+		<batch:step id="migrateOutgoingWebhooks" next="migratePosts">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderOutgoingWebhooks" writer="databaseItemWriterOutgoingWebhooks"
 							 commit-interval="1000"/>
 			</batch:tasklet>
-		</batch:step>
 
-		<batch:step id="migratePasswordRecovery" next="migratePosts">
-			<batch:tasklet transaction-manager="transactionManager">
-				<batch:chunk reader="databaseItemReaderPasswordRecovery" writer="databaseItemWriterPasswordRecovery"
-							 commit-interval="1000"/>
-			</batch:tasklet>
 		</batch:step>
 
 		<batch:step id="migratePosts" next="migratePreferences">
