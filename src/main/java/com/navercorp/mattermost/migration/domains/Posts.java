@@ -40,4 +40,5 @@ public class Posts {
 	private String filenames;
 	private String fileids;
 	private Boolean hasreactions;
+	private Boolean ispinned;
 }
