@@ -328,7 +328,7 @@ Posts:
   selection:
     SELECT * FROM Posts          
   insertion:
-    INSERT INTO OutgoingWebhooks
+    INSERT INTO Posts
       (Id,
       createat,
       updateat,
