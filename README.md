@@ -8,14 +8,14 @@ This program migrates `Mattermost database` from postgresql to mysql, or vice ve
 
 * JDK 7 (or higher) + Maven 3
 
-* Can connect on both (postgresql/mysql) database system at the same time.
+* Network routes to connect to source & destination (postgresql/mysql) databases system at the same time.
 
 ### Conditions
 
-* Using same version of Mattermost.
+Both source and destination must be the same mattermost version
  
  ```
-ex) v4.3.2 Mattermost running on postgresql database
+e.g. v4.3.2 Mattermost running on postgresql database
  
  to  v4.3.2 Mattermost running on mysql database
  ```
@@ -27,7 +27,8 @@ This may work on later versions however please observe any changes to schema (pa
 ## How-to-migrate
 
 ### Clone this repository on machine's local path.
-`git clone [repository path]`
+
+`git clone https://github.com/alecisec/mattermost-migration`
 
 ### Initialize target database.
 
@@ -39,13 +40,11 @@ This may work on later versions however please observe any changes to schema (pa
 
 * Truncate all tables.
 
->Normally truncating the `Systems` table will be enough. (At first, other table is empty)
+>Normally truncating the `Systems` table will be enough. (Initially other tables should be empty)
 
 ### Rename `application.properties.default` to `application.properties`
 
-* Program will read application.properties
-
-### Setting program's `application.properties`
+* Edit and populate application.properties
 
 * Make sure that database's driver, url, username, password are correct.
 
@@ -65,7 +64,7 @@ This command will download libraries, compile classes, and run migration program
 
 ## Used Libraries
 
-This program uses following libraries at it's build time.
+This program requires following libraries at build.
 
 |Library Name| Version|
 |---|---|
@@ -79,13 +78,13 @@ This program uses following libraries at it's build time.
 
 ## Limitations
 
-This is **not official migration program**, it uses *not recommended way* to migration.
+This is **not official migration program**
 
 (In fact, there is no recommended way to migration at now.)
- 
-This program may make wrong result on target database, so you MUST check migrated data before you shutdown original database.
 
-## License
+This program may create incorrect entries in the target database, you should test the resulting target database thoroughly.
+
+## Licenses
 
 Apache License 2.0
 
