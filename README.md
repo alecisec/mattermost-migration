@@ -80,7 +80,7 @@ This program requires following libraries at build.
 
 This is **not official migration program**
 
-(In fact, there is no recommended way to migration at now.)
+(In fact, there is no recommended way to migrate at now.)
 
 This program may create incorrect entries in the target database, you should test the resulting target database thoroughly.
 
