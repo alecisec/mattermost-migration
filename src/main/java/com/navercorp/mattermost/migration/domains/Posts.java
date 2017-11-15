@@ -37,4 +37,5 @@ public class Posts {
 	private String props;
 	private String hashtags;
 	private String filenames;
+	private String fileids;
 }
