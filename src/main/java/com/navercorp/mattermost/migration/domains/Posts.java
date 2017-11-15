@@ -27,6 +27,7 @@ public class Posts {
 	private BigInteger createat;
 	private BigInteger updateat;
 	private BigInteger deleteat;
+	private BigInteger editat;
 	private String userid;
 	private String channelid;
 	private String rootid;
