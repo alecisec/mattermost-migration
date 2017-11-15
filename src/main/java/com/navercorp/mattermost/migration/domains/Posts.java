@@ -38,4 +38,5 @@ public class Posts {
 	private String hashtags;
 	private String filenames;
 	private String fileids;
+	private Boolean hasreactions;
 }
