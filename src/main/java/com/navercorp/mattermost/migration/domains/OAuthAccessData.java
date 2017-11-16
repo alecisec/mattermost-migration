@@ -25,4 +25,5 @@ public class OAuthAccessData {
 	private String Token;
 	private String RefreshToken;
 	private String RedirectUri;
+	private Long ExpiresAt;
 }
