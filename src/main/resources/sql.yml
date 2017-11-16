@@ -233,6 +233,7 @@ OAuthAccessData:
       Token,
       RefreshToken,
       RedirectUri,
+      ExpiresAt,
       Scope,
       UserId)
     VALUES
@@ -240,6 +241,7 @@ OAuthAccessData:
       :Token,
       :RefreshToken,
       :RedirectUri,
+      :ExpiresAt,
       :Scope,
       :UserId)
 OAuthApps:
