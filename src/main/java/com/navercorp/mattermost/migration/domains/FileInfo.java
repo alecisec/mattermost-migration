@@ -37,8 +37,8 @@ public class FileInfo {
   private String PreviewPath;
   private String Name;
   private String Extension;
-  private String MimeType;
   private BigInteger Size;
+  private String MimeType;
   private long Width;
   private long Height;
   private boolean HasPreviewImage;
