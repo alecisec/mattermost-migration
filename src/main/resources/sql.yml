@@ -382,6 +382,20 @@ Preferences:
       :Category,
       :Name,
       :Value)
+Reactions:
+  selection:
+    SELECT * FROM Reactions
+  insertion:
+    INSERT INTO Reactions
+      (UserId,
+      PostId,
+      EmojiName,
+      CreateAt)
+    VALUES
+      (:UserId,
+      :PostId,
+      :EmojiName,
+      :CreateAt)
 Sessions:
   selection:
     SELECT * FROM Sessions
