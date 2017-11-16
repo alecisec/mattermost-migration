@@ -343,7 +343,7 @@
 	<bean id="databaseItemReaderFileInfo"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${Users.selection}"/>
+		<property name="sql" value="${FileInfo.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
 				  c:mappedClass="com.navercorp.mattermost.migration.domains.FileInfo"/>
@@ -352,7 +352,7 @@
 	<bean id="databaseItemWriterFileInfo" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${Users.insertion}"/>
+		<property name="sql" value="${FileInfo.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
