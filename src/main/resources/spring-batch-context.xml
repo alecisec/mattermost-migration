@@ -339,6 +339,24 @@
 		</property>
 	</bean>
 
+	<bean id="databaseItemReaderEmoji"
+		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="sourceDatabase"/>
+		<property name="sql" value="${Emoji.selection}"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.Emoji"/>
+		</property>
+	</bean>
+	<bean id="databaseItemWriterEmoji" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+		  scope="step">
+		<property name="dataSource" ref="targetDatabase"/>
+		<property name="sql" value="${Emoji.insertion}"/>
+		<property name="itemSqlParameterSourceProvider">
+			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+		</property>
+	</bean>
+	
 	<bean id="databaseItemReaderUsers"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
@@ -484,12 +502,18 @@
 			</batch:tasklet>
 		</batch:step>
 		
-		<batch:step id="migrateFileInfo" next="migrateUsers">
+		<batch:step id="migrateFileInfo" next="migrateEmoji">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderFileInfo" writer="databaseItemWriterFileInfo" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 
+		<batch:step id="migrateEmoji" next="migrateUsers">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="databaseItemReaderEmoji" writer="databaseItemWriterEmoji" commit-interval="1000"/>
+			</batch:tasklet>
+		</batch:step>
+		
 		<batch:step id="migrateUsers">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderUsers" writer="databaseItemWriterUsers" commit-interval="1000"/>
