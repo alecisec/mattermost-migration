@@ -72,7 +72,7 @@
 	<bean id="databaseItemReaderClusterDiscovery"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${ClusterDiscovery.selection}"/>
+		<property name="sql" value="${clusterdiscovery.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
 				  c:mappedClass="com.navercorp.mattermost.migration.domains.ClusterDiscovery"/>
@@ -81,7 +81,7 @@
 	<bean id="databaseItemWriterClusterDiscovery" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${ClusterDiscovery.insertion}"/>
+		<property name="sql" value="${clusterdiscovery.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
@@ -108,7 +108,7 @@
 	<bean id="databaseItemReaderCommandWebhooks"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${CommandWebhooks.selection}"/>
+		<property name="sql" value="${commandwebhooks.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
 				  c:mappedClass="com.navercorp.mattermost.migration.domains.CommandWebhooks"/>
@@ -117,7 +117,7 @@
 	<bean id="databaseItemWriterCommandWebhooks" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${CommandWebhooks.insertion}"/>
+		<property name="sql" value="${commandwebhooks.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
@@ -162,7 +162,7 @@
 	<bean id="databaseItemReaderJobs"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${Jobs.selection}"/>
+		<property name="sql" value="${jobs.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
 				  c:mappedClass="com.navercorp.mattermost.migration.domains.Jobs"/>
@@ -171,7 +171,7 @@
 	<bean id="databaseItemWriterJobs" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${Jobs.insertion}"/>
+		<property name="sql" value="${jobs.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
@@ -324,7 +324,7 @@
 	<bean id="databaseItemReaderStatus"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${Status.selection}"/>
+		<property name="sql" value="${status.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
 				  c:mappedClass="com.navercorp.mattermost.migration.domains.Status"/>
@@ -333,7 +333,7 @@
 	<bean id="databaseItemWriterStatus" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${Status.insertion}"/>
+		<property name="sql" value="${status.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
@@ -396,7 +396,7 @@
 	<bean id="databaseItemReaderTokens"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${Tokens.selection}"/>
+		<property name="sql" value="${tokens.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
 				  c:mappedClass="com.navercorp.mattermost.migration.domains.Tokens"/>
@@ -405,7 +405,7 @@
 	<bean id="databaseItemWriterTokens" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${Tokens.insertion}"/>
+		<property name="sql" value="${tokens.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
