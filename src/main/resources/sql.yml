@@ -260,7 +260,7 @@ incomingWebhooks:
       :TeamId,
       :DisplayName,
       :Description)
-Jobs:
+jobs:
   selection:
     SELECT * FROM UserAccessToken
   insertion:
