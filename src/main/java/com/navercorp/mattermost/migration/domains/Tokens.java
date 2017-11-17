@@ -25,7 +25,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class FileInfo {
+public class Tokens {
   private String Token;
   private BigInteger CreateAt;
   private String Type;
