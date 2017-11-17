@@ -198,7 +198,7 @@ emoji:
       :DeleteAt,
       :CreatorId,
       :Name)
-fileinfo:
+FileInfo:
   selection:
     SELECT * FROM FileInfo
   insertion:
