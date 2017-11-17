@@ -466,6 +466,24 @@
 		</property>
 	</bean>
 	
+	<bean id="databaseItemReaderUserAccessToken"
+		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="sourceDatabase"/>
+		<property name="sql" value="${UserAccessToken.selection}"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.UserAccessToken"/>
+		</property>
+	</bean>
+	<bean id="databaseItemWriterUserAccessToken" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+		  scope="step">
+		<property name="dataSource" ref="targetDatabase"/>
+		<property name="sql" value="${UserAccessToken.insertion}"/>
+		<property name="itemSqlParameterSourceProvider">
+			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+		</property>
+	</bean>
+	
 	<bean id="databaseItemReaderUsers"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
@@ -653,6 +671,12 @@
 			</batch:tasklet>
 		</batch:step>
 
+		<batch:step id="migrateReactions" next="migrateReactions">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="databaseItemReaderReactions" writer="databaseItemWriterReactions" commit-interval="1000"/>
+			</batch:tasklet>
+		</batch:step>
+		
 		<batch:step id="migrateReactions" next="migrateUsers">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderReactions" writer="databaseItemWriterReactions" commit-interval="1000"/>
