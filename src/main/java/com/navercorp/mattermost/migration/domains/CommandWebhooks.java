@@ -25,7 +25,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class commandwebhooks {
+public class CommandWebhooks {
   private String Id;
   private BigInteger CreateAt;
   private String CommandId;
