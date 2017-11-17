@@ -670,16 +670,16 @@
 				<batch:chunk reader="databaseItemReaderEmoji" writer="databaseItemWriterEmoji" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
-
-		<batch:step id="migrateReactions" next="migrateReactions">
+		
+		<batch:step id="migrateReactions" next="migrateUserAccessToken">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderReactions" writer="databaseItemWriterReactions" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 		
-		<batch:step id="migrateReactions" next="migrateUsers">
+		<batch:step id="migrateUserAccessToken" next="migrateUsers">
 			<batch:tasklet transaction-manager="transactionManager">
-				<batch:chunk reader="databaseItemReaderReactions" writer="databaseItemWriterReactions" commit-interval="1000"/>
+				<batch:chunk reader="databaseItemReaderUserAccessToken" writer="databaseItemWriterUserAccessToken" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 		
