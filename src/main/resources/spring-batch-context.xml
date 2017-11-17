@@ -671,15 +671,15 @@
 			</batch:tasklet>
 		</batch:step>
 		
-		<batch:step id="migrateReactions" next="migrateUserAccessToken">
+		<batch:step id="migrateReactions" next="migrateUserAccessTokens">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderReactions" writer="databaseItemWriterReactions" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 		
-		<batch:step id="migrateUserAccessToken" next="migrateUsers">
+		<batch:step id="migrateUserAccessTokens" next="migrateUsers">
 			<batch:tasklet transaction-manager="transactionManager">
-				<batch:chunk reader="databaseItemReaderUserAccessToken" writer="databaseItemWriterUserAccessToken" commit-interval="1000"/>
+				<batch:chunk reader="databaseItemReaderUserAccessTokens" writer="databaseItemWriterUserAccessTokens" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 		
