@@ -180,7 +180,7 @@ compliances:
       :EndAt,
       :Keywords,
       :Emails)
-emoji:
+Emoji:
   selection:
     SELECT * FROM Emoji
   insertion:
