@@ -25,7 +25,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class jobs {
+public class Jobs {
   private String Id;
   private String Type;
   private BigInteger Priority;
