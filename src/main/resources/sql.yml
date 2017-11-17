@@ -580,11 +580,11 @@ Tokens:
       :CreateAt,
       :Type,
       :Extra)
-UserAccessToken:
+UserAccessTokens:
   selection:
-    SELECT * FROM UserAccessToken
+    SELECT * FROM UserAccessTokens
   insertion:
-    INSERT INTO UserAccessToken
+    INSERT INTO UserAccessTokens
       (Id,
       Token,
       UserId,
