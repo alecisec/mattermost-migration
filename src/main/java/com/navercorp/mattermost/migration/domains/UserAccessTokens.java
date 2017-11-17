@@ -30,5 +30,6 @@ public class UserAccessTokens {
   private String Token;
   private String UserId;
   private String Description;
+  private UNKNOWN IsActive;
   
 }
