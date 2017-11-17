@@ -69,6 +69,24 @@
 		</property>
 	</bean>
 
+	<bean id="databaseItemReaderClusterDiscovery"
+		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="sourceDatabase"/>
+		<property name="sql" value="${ClusterDiscovery.selection}"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.ClusterDiscovery"/>
+		</property>
+	</bean>
+	<bean id="databaseItemWriterClusterDiscovery" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+		  scope="step">
+		<property name="dataSource" ref="targetDatabase"/>
+		<property name="sql" value="${ClusterDiscovery.insertion}"/>
+		<property name="itemSqlParameterSourceProvider">
+			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+		</property>
+	</bean>
+	
 	<bean id="databaseItemReaderCommands"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
@@ -87,6 +105,24 @@
 		</property>
 	</bean>
 
+	<bean id="databaseItemReaderCommandWebhooks"
+		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="sourceDatabase"/>
+		<property name="sql" value="${CommandWebhooks.selection}"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.CommandWebhooks"/>
+		</property>
+	</bean>
+	<bean id="databaseItemWriterCommandWebhooks" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+		  scope="step">
+		<property name="dataSource" ref="targetDatabase"/>
+		<property name="sql" value="${CommandWebhooks.insertion}"/>
+		<property name="itemSqlParameterSourceProvider">
+			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+		</property>
+	</bean>
+	
 	<bean id="databaseItemReaderCompliances"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
@@ -123,6 +159,24 @@
 		</property>
 	</bean>
 
+	<bean id="databaseItemReaderJobs"
+		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="sourceDatabase"/>
+		<property name="sql" value="${Jobs.selection}"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.Jobs"/>
+		</property>
+	</bean>
+	<bean id="databaseItemWriterJobs" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+		  scope="step">
+		<property name="dataSource" ref="targetDatabase"/>
+		<property name="sql" value="${Jobs.insertion}"/>
+		<property name="itemSqlParameterSourceProvider">
+			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+		</property>
+	</bean>
+	
 	<bean id="databaseItemReaderLicenses"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
@@ -266,6 +320,24 @@
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
 	</bean>
+	
+	<bean id="databaseItemReaderStatus"
+		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="sourceDatabase"/>
+		<property name="sql" value="${Status.selection}"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.Status"/>
+		</property>
+	</bean>
+	<bean id="databaseItemWriterStatus" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+		  scope="step">
+		<property name="dataSource" ref="targetDatabase"/>
+		<property name="sql" value="${Status.insertion}"/>
+		<property name="itemSqlParameterSourceProvider">
+			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+		</property>
+	</bean>
 
 	<bean id="databaseItemReaderSystems"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
@@ -320,6 +392,25 @@
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
 	</bean>
+	
+	<bean id="databaseItemReaderTokens"
+		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
+		<property name="dataSource" ref="sourceDatabase"/>
+		<property name="sql" value="${Tokens.selection}"/>
+		<property name="rowMapper">
+			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.Tokens"/>
+		</property>
+	</bean>
+	<bean id="databaseItemWriterTokens" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+		  scope="step">
+		<property name="dataSource" ref="targetDatabase"/>
+		<property name="sql" value="${Tokens.insertion}"/>
+		<property name="itemSqlParameterSourceProvider">
+			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
+		</property>
+	</bean>
+	
 	
 	<bean id="databaseItemReaderFileInfo"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
@@ -409,17 +500,29 @@
 			</batch:tasklet>
 		</batch:step>
 
-		<batch:step id="migrateChannelMembers" next="migrateChannels">
+		<batch:step id="migrateChannelMembers" next="migrateClusterDiscovery">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderChannelMembers" writer="databaseItemWriterChannelMembers"
 							 commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 
-		<batch:step id="migrateChannels" next="migrateCommands">
+		<batch:step id="migrateClusterDiscovery" next="migrateChannels">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="databaseItemReaderClusterDiscovery" writer="databaseItemWriterClusterDiscovery" commit-interval="1000"/>
+			</batch:tasklet>
+		</batch:step>
+		
+		<batch:step id="migrateChannels" next="migrateCommandWebhooks">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderChannels" writer="databaseItemWriterChannels"
 							 commit-interval="1000"/>
+			</batch:tasklet>
+		</batch:step>
+		
+		<batch:step id="migrateCommandWebhooks" next="migrateCommands">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="databaseItemReaderCommandWebhooks" writer="databaseItemWriterCommandWebhooks" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 
@@ -437,10 +540,16 @@
 			</batch:tasklet>
 		</batch:step>
 
-		<batch:step id="migrateIncomingWebhooks" next="migrateLicenses">
+		<batch:step id="migrateIncomingWebhooks" next="migrateJobs">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderIncomingWebhooks" writer="databaseItemWriterIncomingWebhooks"
 							 commit-interval="1000"/>
+			</batch:tasklet>
+		</batch:step>
+		
+		<batch:step id="migrateJobs" next="migrateLicenses">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="databaseItemReaderJobs" writer="databaseItemWriterJobs" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 
@@ -493,13 +602,19 @@
 			</batch:tasklet>
 		</batch:step>
 
-		<batch:step id="migrateSessions" next="migrateSystems">
+		<batch:step id="migrateSessions" next="migrateStatus">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderSessions" writer="databaseItemWriterSessions"
 							 commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 
+		<batch:step id="migrateStatus" next="migrateSystems">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="databaseItemReaderStatus" writer="databaseItemWriterStatus" commit-interval="1000"/>
+			</batch:tasklet>
+		</batch:step>
+		
 		<batch:step id="migrateSystems" next="migrateTeamMembers">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderSystems" writer="databaseItemWriterSystems"
@@ -507,10 +622,16 @@
 			</batch:tasklet>
 		</batch:step>
 
-		<batch:step id="migrateTeamMembers" next="migrateTeams">
+		<batch:step id="migrateTeamMembers" next="migrateTokens">
 			<batch:tasklet transaction-manager="transactionManager">
 				<batch:chunk reader="databaseItemReaderTeamMembers" writer="databaseItemWriterTeamMembers"
 							 commit-interval="1000"/>
+			</batch:tasklet>
+		</batch:step>
+		
+		<batch:step id="migrateTokens" next="migrateTeams">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="databaseItemReaderTokens" writer="databaseItemWriterTokens" commit-interval="1000"/>
 			</batch:tasklet>
 		</batch:step>
 
