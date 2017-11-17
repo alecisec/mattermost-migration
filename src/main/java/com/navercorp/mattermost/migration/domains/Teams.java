@@ -29,11 +29,11 @@ public class Teams {
 	private BigInteger DeleteAt;
 	private String DisplayName;
 	private String Name;
+	private String Description;
 	private String Email;
 	private String Type;
 	private String CompanyName;
 	private String AllowedDomains;
 	private String InviteId;
-	private String Description;
 	private boolean AllowOpenInvite;
 }
