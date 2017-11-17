@@ -15,13 +15,13 @@ This program migrates `Mattermost database` from postgresql to mysql, or vice ve
 Both source and destination must be the same mattermost version
  
  ```
-e.g. v4.3.2 Mattermost running on postgresql database
+e.g. v4.4 Mattermost running on postgresql database
  
- to  v4.3.2 Mattermost running on mysql database
+ to  v4.4 Mattermost running on mysql database
  ```
  
-Recommend updating both source mattermost install and the destination/trunkated DB to 4.3.2
-This may work on later versions however please observe any changes to schema (paste 4.3.2) noted here https://docs.mattermost.com/administration/changelog.html
+Recommend updating both source mattermost install and the destination/trunkated DB to 4.4
+This may work on later versions however please observe any changes to schema (paste 4.4) noted here https://docs.mattermost.com/administration/changelog.html
 
 
 ## How-to-migrate
