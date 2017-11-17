@@ -267,6 +267,7 @@ Jobs:
     INSERT INTO UserAccessToken
       (id,
       type,
+      priority,
       createat,
       startat,
       lastactivityat,
@@ -276,6 +277,7 @@ Jobs:
     VALUES
       (:id,
       :type,
+      :priority,
       :createat,
       :startat,
       :lastactivityat,
