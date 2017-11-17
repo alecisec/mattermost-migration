@@ -31,8 +31,8 @@ public class ClusterDiscovery {
   private String ClusterName;
   private String Hostname;
   private long GossipPort;
-  Private long Port;
-  Private BigInteger CreateAt;
-  Private BigInteger LastPingAt;
+  private long Port;
+  private BigInteger CreateAt;
+  private BigInteger LastPingAt;
   
 }
