@@ -32,4 +32,5 @@ public class OAuthApps {
 	private String Description;
 	private String CallbackUrls;
 	private String Homepage;
+	private boolean IsTrusted;
 }
