@@ -466,19 +466,19 @@
 		</property>
 	</bean>
 	
-	<bean id="databaseItemReaderUserAccessToken"
+	<bean id="databaseItemReaderUserAccessTokens"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${UserAccessToken.selection}"/>
+		<property name="sql" value="${UserAccessTokens.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
-				  c:mappedClass="com.navercorp.mattermost.migration.domains.UserAccessToken"/>
+				  c:mappedClass="com.navercorp.mattermost.migration.domains.UserAccessTokens"/>
 		</property>
 	</bean>
-	<bean id="databaseItemWriterUserAccessToken" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
+	<bean id="databaseItemWriterUserAccessTokens" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${UserAccessToken.insertion}"/>
+		<property name="sql" value="${UserAccessTokens.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
