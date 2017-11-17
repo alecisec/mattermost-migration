@@ -302,20 +302,20 @@ OAuthAccessData:
   insertion:
     INSERT INTO OAuthAccessData
       (ClientId,
+      UserId,
       Token,
       RefreshToken,
       RedirectUri,
       ExpiresAt,
-      Scope,
-      UserId)
+      Scope)
     VALUES
       (:ClientId,
+      :UserId,
       :Token,
       :RefreshToken,
       :RedirectUri,
       :ExpiresAt,
-      :Scope,
-      :UserId)
+      :Scope)
 OAuthApps:
   selection:
     SELECT * FROM OAuthApps
