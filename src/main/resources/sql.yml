@@ -588,12 +588,14 @@ UserAccessTokens:
       (Id,
       Token,
       UserId,
-      Description)
+      Description,
+      IsActive)
     VALUES
       (:Id,
       :Token,
       :UserId,
-      :Description)
+      :Description
+      :IsActive)
 Users:
   selection:
     SELECT * FROM Users
