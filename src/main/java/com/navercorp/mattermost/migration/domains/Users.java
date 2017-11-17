@@ -36,14 +36,11 @@ public class Users {
 	private String Nickname;
 	private String FirstName;
 	private String LastName;
-	private String Roles;
 	private String Position;
-	private BigInteger LastActivityAt;
-	private BigInteger LastPingAt;
+	private String Roles;
 	private boolean AllowMarketing;
 	private String Props;
 	private String NotifyProps;
-	private String ThemeProps;
 	private BigInteger LastPasswordUpdate;
 	private BigInteger LastPictureUpdate;
 	private Long FailedAttempts;
