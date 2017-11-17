@@ -262,9 +262,9 @@ incomingWebhooks:
       :Description)
 jobs:
   selection:
-    SELECT * FROM UserAccessToken
+    SELECT * FROM Jobs
   insertion:
-    INSERT INTO UserAccessToken
+    INSERT INTO Jobs
       (id,
       type,
       priority,
