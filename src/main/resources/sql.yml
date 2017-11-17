@@ -17,9 +17,23 @@ channelMembers:
     SELECT * FROM ChannelMembers
   insertion:
     INSERT INTO ChannelMembers
-      (channelid, userid, roles, lastviewedat, msgcount, mentioncount, notifyprops, lastupdateat)
+      (channelid,
+      userid,
+      roles,
+      lastviewedat,
+      msgcount,
+      mentioncount,
+      notifyprops,
+      lastupdateat)
     VALUES
-      (:channelid, :userid, :roles, :lastviewedat, :msgcount, :mentioncount, :notifyprops, :lastupdateat)
+      (:channelid,
+      :userid,
+      :roles,
+      :lastviewedat,
+      :msgcount,
+      :mentioncount,
+      :notifyprops,
+      :lastupdateat)
 channels:
   selection:
     SELECT * FROM Channels
@@ -54,6 +68,28 @@ channels:
       :totalmsgcount,
       :extraupdateat,
       :creatorid)
+clusterdiscovery:
+  selection:
+    SELECT * FROM ClusterDiscovery
+  insertion:
+    INSERT INTO ClusterDiscovery
+      (id,
+      type,
+      clustername,
+      hostname,
+      gossipport,
+      port,
+      createat,
+      lastpingat)
+    VALUES
+      (:id,
+      :type,
+      :clustername,
+      :hostname,
+      :gossipport,
+      :port,
+      :createat,
+      :lastpingat)
 commands:
   selection:
     SELECT * FROM Commands
@@ -94,6 +130,28 @@ commands:
       :DisplayName,
       :Description,
       :URL)
+commandwebhooks:
+  selection:
+    SELECT * FROM CommandWebhooks
+  insertion:
+    INSERT INTO CommandWebhooks
+      (id,
+      createat,
+      commandid,
+      userid,
+      channelid,
+      rootid,
+      parentid,
+      usecount)
+    VALUES
+      (:id,
+      :createat,
+      :commandid,
+      :userid,
+      :channelid,
+      :rootid,
+      :parentid,
+      :usecount)
 compliances:
   selection:
     SELECT * FROM Compliances
@@ -122,7 +180,7 @@ compliances:
       :EndAt,
       :Keywords,
       :Emails)
-Emoji:
+emoji:
   selection:
     SELECT * FROM Emoji
   insertion:
@@ -140,7 +198,7 @@ Emoji:
       :DeleteAt,
       :CreatorId,
       :Name)
-FileInfo:
+fileinfo:
   selection:
     SELECT * FROM FileInfo
   insertion:
@@ -207,11 +265,23 @@ Jobs:
     SELECT * FROM UserAccessToken
   insertion:
     INSERT INTO UserAccessToken
-      (Name,
-      Value)
+      (id,
+      type,
+      createat,
+      startat,
+      lastactivityat,
+      status,
+      progress,
+      data)
     VALUES
-      (:Name,
-      :Value)
+      (:id,
+      :type,
+      :createat,
+      :startat,
+      :lastactivityat,
+      :status,
+      :progress,
+      :data)
 licenses:
   selection:
     SELECT * FROM Licenses
@@ -258,7 +328,8 @@ OAuthApps:
       Name,
       Description,
       CallbackUrls,
-      Homepage)
+      Homepage,
+      IsTrusted)
     VALUES
       (:Id,
       :CreatorId,
@@ -269,7 +340,8 @@ OAuthApps:
       :Name,
       :Description,
       :CallbackUrls,
-      :Homepage)
+      :Homepage,
+      :IsTrusted)
 OAuthAuthData:
   selection:
     SELECT * FROM OAuthAuthData
@@ -523,6 +595,7 @@ Users:
       EmailVerified,
       Nickname,
       FirstName,
+      Position,
       LastName,
       Roles,
       AllowMarketing,
@@ -533,8 +606,7 @@ Users:
       FailedAttempts,
       Locale,
       MfaActive,
-      MfaSecret,
-      Position)
+      MfaSecret)
     VALUES
       (:Id,
       :CreateAt,
@@ -548,6 +620,7 @@ Users:
       :EmailVerified,
       :Nickname,
       :FirstName,
+      :Position,
       :LastName,
       :Roles,
       :AllowMarketing,
@@ -558,5 +631,4 @@ Users:
       :FailedAttempts,
       :Locale,
       :MfaActive,
-      :MfaSecret,
-      :Position)
+      :MfaSecret)
