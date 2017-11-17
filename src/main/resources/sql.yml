@@ -566,6 +566,20 @@ Teams:
       :AllowedDomains,
       :InviteId,
       :AllowOpenInvite)
+Tokens:
+  selection:
+    SELECT * FROM Tokens
+  insertion:
+    INSERT INTO UserAccessToken
+      (Token,
+      CreateAt,
+      Type,
+      Extra)
+    VALUES
+      (:Token,
+      :CreateAt,
+      :Type,
+      :Extra)
 UserAccessToken:
   selection:
     SELECT * FROM UserAccessToken
@@ -597,8 +611,8 @@ Users:
       EmailVerified,
       Nickname,
       FirstName,
-      Position,
       LastName,
+      Position,
       Roles,
       AllowMarketing,
       Props,
@@ -622,8 +636,8 @@ Users:
       :EmailVerified,
       :Nickname,
       :FirstName,
-      :Position,
       :LastName,
+      :Position,
       :Roles,
       :AllowMarketing,
       :Props,
