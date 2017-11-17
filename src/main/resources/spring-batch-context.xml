@@ -108,7 +108,7 @@
 	<bean id="databaseItemReaderCommandWebhooks"
 		  class="org.springframework.batch.item.database.JdbcCursorItemReader">
 		<property name="dataSource" ref="sourceDatabase"/>
-		<property name="sql" value="${CommandWebhooks.selection}"/>
+		<property name="sql" value="${commandWebhooks.selection}"/>
 		<property name="rowMapper">
 			<bean class="org.springframework.jdbc.core.BeanPropertyRowMapper"
 				  c:mappedClass="com.navercorp.mattermost.migration.domains.CommandWebhooks"/>
@@ -117,7 +117,7 @@
 	<bean id="databaseItemWriterCommandWebhooks" class="org.springframework.batch.item.database.JdbcBatchItemWriter"
 		  scope="step">
 		<property name="dataSource" ref="targetDatabase"/>
-		<property name="sql" value="${CommandWebhooks.insertion}"/>
+		<property name="sql" value="${commandWebhooks.insertion}"/>
 		<property name="itemSqlParameterSourceProvider">
 			<bean class="org.springframework.batch.item.database.BeanPropertyItemSqlParameterSourceProvider"/>
 		</property>
